@@ -1,0 +1,14 @@
+stages:
+  preprocess:
+    cmd: python scripts/preprocess_images.py
+    deps:
+    - datasets/images/
+    outs:
+    - datasets/preprocessed/
+  train:
+    cmd: python scripts/train.py --data-dir datasets/preprocessed/ --model-dir models/
+    deps:
+    - datasets/preprocessed/
+    - scripts/train.py
+    outs:
+    - models/

@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python scripts/preprocess_images.py
+    deps:
+    - path: datasets/images/
+      hash: md5
+      md5: 1c0fc8f9618ee9fea73e5698c2192448.dir
+      size: 825978687
+      nfiles: 2357
+    outs:
+    - path: datasets/preprocessed/
+      hash: md5
+      md5: 838b2174f48c51af37d47f6f846398f3.dir
+      size: 6321987
+      nfiles: 2357
+  train:
+    cmd: python scripts/train.py --data-dir datasets/preprocessed/ --model-dir models/
+    deps:
+    - path: datasets/preprocessed/
+      hash: md5
+      md5: 838b2174f48c51af37d47f6f846398f3.dir
+      size: 6321987
+      nfiles: 2357
+    - path: scripts/train.py
+      hash: md5
+      md5: 296f95e30f08beba6410227bbf771f9d
+      size: 1832
+    outs:
+    - path: models/
+      hash: md5
+      md5: 89b633fea1488eeb348c185eee89a329.dir
+      size: 88762200
+      nfiles: 1

@@ -26,7 +26,7 @@ class ImageServices:
     def __init__(self, session: AsyncSession, minio_client: Minio):
         self.session = session
         self.minio_client = minio_client
-        self.model = load_model("src/model/my_keras_model2.keras")  # Load your model here
+        self.model = load_model(r"C:\Users\KohEndru\Documents\Python\fastapi-image-classification\models\model.h5")  # Load your model here
         
     async def get_image(self, image_id: str) -> Image:
         image = await self.session.get(Image, image_id)
@@ -82,7 +82,7 @@ class ImageServices:
         # Read and preprocess the image
         contents = await file.read()
         contents_io = io.BytesIO(contents)
-        image = preprocess_image(contents_io, target_size=(176, 176))  # Resizing to 176x176 as expected by the model
+        image = preprocess_image(contents_io, target_size=(128, 128))  # Resizing to 128x128 as expected by the model
 
         # Perform prediction
         predictions = self.model.predict(image)
