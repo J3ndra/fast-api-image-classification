@@ -5,7 +5,13 @@ from sqlalchemy.orm import sessionmaker
 from src.config import settings
 
 async_engine = create_async_engine(
-    url = settings.POSTGRES_URL,
+    url = "postgresql+asyncpg://{user}:{password}@{host}:{port}/{db}".format(
+        user=settings.POSTGRES_USER,
+        password=settings.POSTGRES_PASSWORD,
+        host=settings.POSTGRES_HOST,
+        port=settings.POSTGRES_PORT,
+        db=settings.POSTGRES_DB
+    ),
     echo = True
 )
 

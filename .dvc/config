@@ -2,4 +2,4 @@
     remote = minio-remote
 ['remote "minio-remote"']
     url = s3://model
-    endpointurl = http://localhost:11501
+    endpointurl = http://localhost:12001

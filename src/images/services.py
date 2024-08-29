@@ -34,7 +34,7 @@ class ImageServices:
     
     def generate_presigned_url(self, image: Image) -> ImageResponseModel:
         presigned_url = self.minio_client.presigned_get_object(
-            bucket_name=settings.MINIO_BUCKET,
+            bucket_name=settings.MINIO_FASTAPI_BUMINIO_BUCKETCKET_NAME,
             object_name=image.file_path.split("/")[-1],
             expires=datetime.timedelta(days=1)
         )
